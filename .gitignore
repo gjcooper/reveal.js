@@ -10,3 +10,6 @@ tmp/**
 node_modules/
 .sass-cache
 dist/*.map
+package-lock.json
+# Individual presentations are stored in decks and have there own repo management
+decks/
