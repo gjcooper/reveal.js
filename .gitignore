@@ -8,9 +8,9 @@ out/
 log/*.log
 tmp/**
 node_modules/
+package-lock.json
 .sass-cache
 css/reveal.min.css
 js/reveal.min.js
 # Individual presentations are stored in decks and have there own repo management
 decks/
-package-lock.json
