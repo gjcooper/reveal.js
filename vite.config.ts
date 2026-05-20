@@ -15,6 +15,13 @@ export const appendExtension = (format: ModuleFormat, name: String): string => {
 export default defineConfig({
 	server: {
 		port: Number(process.env.npm_config_port || 8000),
+        fs: {
+            strict: true,
+            allow: ['.', '/home/gjc216/Projects/talks'],
+        },
+        watch: {
+            ignored: ['**/images/**']
+        }
 	},
 	build: {
 		target: ['es2015'],
@@ -40,6 +47,7 @@ export default defineConfig({
 			'reveal.js': '/js',
 			'reveal.css': '/css/reveal.scss',
 		},
+        preserveSymlinks: true,
 	},
 	plugins: [
 		dts({
