@@ -397,18 +397,28 @@
 				QUnit.test( 'Reveal.syncSlide', function( assert ) {
 					var slide = Reveal.getSlide( 3 );
 					var imageURL = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+					var gradient = 'linear-gradient(to right, #000000, #ffffff)';
 
 					slide.setAttribute( 'data-background-image', imageURL );
 					Reveal.syncSlide( slide );
 
-					var backgroundImage = Reveal.getSlideBackground( slide )
+					var background = Reveal.getSlideBackground( slide );
+					var backgroundImage = background
 						.querySelector( '.slide-background-content' )
 						.style.backgroundImage;
 
 					assert.ok( backgroundImage.indexOf( 'data:image/gif' ) !== -1, 'syncSlide updates slide background' );
 
 					slide.removeAttribute( 'data-background-image' );
+					slide.setAttribute( 'data-background-gradient', gradient );
 					Reveal.syncSlide( slide );
+
+					assert.ok( background.style.backgroundImage.indexOf( 'linear-gradient' ) !== -1, 'syncSlide applies gradient background' );
+
+					slide.removeAttribute( 'data-background-gradient' );
+					Reveal.syncSlide( slide );
+
+					assert.strictEqual( background.style.backgroundImage, '', 'syncSlide clears gradient background' );
 				});
 
 				QUnit.test( 'Reveal.syncFragments', function( assert ) {
